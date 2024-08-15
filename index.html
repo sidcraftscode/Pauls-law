@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul's Law Calculator</title>
+    <script src="https://cdn.tailwindcss.com/?plugins=forms"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style type="text/tailwindcss">
+        #chart-container {
+            @apply w-full h-full mt-5 hidden; /* Initially hide the chart container */
+        }
+    
+        #results-table {
+            @apply w-full mt-5 hidden; /* Initially hide the results table */
+        }
+    
+        #results-table th, #results-table td {
+            @apply p-2 border border-gray-300 text-center;
+        }
+    </style>    
+    <script src="scripts.js">
+        
+    </script>
+</head>
+<body class="bg-gray-100 font-sans flex flex-col items-center p-6">
+    <div class="max-w-xl w-full bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold mb-4">Paul's Law Calculator</h1>
+
+        <label for="d1" class="block text-lg font-medium mb-2">Enter Distance 1 (in meters):</label>
+        <input type="text" id="d1" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Meters">
+
+        <label class="block text-lg font-medium mb-2">Enter Time (hh:mm:ss):</label>
+        <div class="flex gap-1 mb-4">
+            <input type="text" id="hours" maxlength="2" class="w-14 p-2 border border-gray-300 rounded" placeholder="hh" oninput="formatTimeInput(event)">
+            <span class="text-lg">:</span>
+            <input type="text" id="minutes" maxlength="2" class="w-14 p-2 border border-gray-300 rounded" placeholder="mm" oninput="formatTimeInput(event)">
+            <span class="text-lg">:</span>
+            <input type="text" id="seconds" maxlength="2" class="w-14 p-2 border border-gray-300 rounded" placeholder="ss" oninput="formatTimeInput(event)">
+        </div>
+
+        <button onclick="calculateTimes()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Calculate Times</button>
+
+        <h2 class="text-xl font-semibold mt-6">Results:</h2>
+        <div id="chart-container" class="chart-container">
+            <canvas id="chart"></canvas>
+        </div>
+
+        <table id="results-table" class="text-sm sm:text-base mt-4 bg-white">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th>Distance (m)</th>
+                    <th>Split Time /500m (mm:ss)</th>
+                    <th>Total Time (hh:mm:ss)</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Results will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
